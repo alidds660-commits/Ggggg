@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Faiza!</title>
+    <style>
+        :root {
+            --pink: #ffdae9;
+            --dark-pink: #ff85a2;
+            --cake-color: #f39c12;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .card-container {
+            width: 85%;
+            max-width: 350px;
+            background: var(--white);
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 133, 162, 0.3);
+            position: relative;
+        }
+
+        /* Screens */
+        .screen { display: none; animation: fadeIn 0.6s ease-out; }
+        #screen1 { display: block; }
+
+        /* Cake Styling */
+        .cake-container {
+            position: relative;
+            cursor: pointer;
+            margin: 40px auto;
+            width: 150px;
+        }
+
+        .cake {
+            width: 150px;
+            height: 100px;
+            background: #f9d976;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cake::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 20px;
+            background: #e67e22;
+            top: 30px; left: 0;
+        }
+
+        .candle {
+            width: 10px;
+            height: 40px;
+            background: #e74c3c;
+            position: absolute;
+            top: -40px;
+            left: 70px;
+            border-radius: 3px;
+        }
+
+        .flame {
+            width: 15px;
+            height: 20px;
+            background: orange;
+            position: absolute;
+            top: -20px;
+            left: -2px;
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        /* Transitions */
+        @keyframes flicker {
+            from { transform: scale(1); opacity: 0.9; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        button {
+            background-color: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .wish-text {
+            color: var(--dark-pink);
+            font-weight: bold;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div id="screen1" class="screen">
+            <h2 style="color: var(--dark-pink);">Happy Birthday! ✨</h2>
+            <p>I have a little surprise for the most amazing person.</p>
+            <button onclick="showScreen('screen2')">Open Gift 🎁</button>
+        </div>
+
+        <div id="screen2" class="screen">
+            <h3 style="color: var(--dark-pink);">A Note For You 💌</h3>
+            <p style="line-height: 1.6; font-style: italic;">"Today marks another year of your incredible existence. I couldn't be more grateful to celebrate it with you..."</p>
+            <button onclick="showScreen('screen3')">Continue ✨</button>
+        </div>
+
+        <div id="screen3" class="screen">
+            <h3 style="color: var(--dark-pink);">It's Cake Time! 🎂</h3>
+            <p>Click the cake to blow out the candle and make a wish!</p>
+            
+            <div class="cake-container" onclick="blowCandle()">
+                <div class="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
+                <div class="cake"></div>
+            </div>
+
+            <div id="wishMessage" class="wish-text">
+                🎉 Perfect! May all your wishes come true today! 💖
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+            // Show selected screen
+            document.getElementById(screenId).style.display = 'block';
+        }
+
+        function blowCandle() {
+            // Hide the flame
+            document.getElementById('flame').style.display = 'none';
+            // Show the wish message
+            document.getElementById('wishMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
